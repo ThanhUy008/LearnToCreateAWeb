@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Nothing
+    </title>
+    <style>
+        body {
+            background-color: #0ea2cf;
+            margin: 0;
+        }
+        
+        .nav {
+            width: 100%;
+            top: 0;
+            background-color: #11a8d6;
+            display: grid;
+            grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 3fr 0.2fr;
+            grid-template-rows: 100%;
+            position: sticky;
+            align-items: center;
+        }
+        
+        .nav div {
+            justify-content: center;
+            padding: 4% 2% 4% 2%;
+            text-align: left;
+            font-size: 150%;
+            color: white;
+        }
+        
+        .nav div:nth-child(1) {
+            grid-column: 2/3;
+        }
+        
+        .nav div:nth-child(4) {
+            margin-left: auto;
+            padding: 0% 0% 0% 0%;
+            grid-column: 6/7;
+        }
+        
+        .header {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            font-size: 1400%;
+            padding: 1% 0% 7%;
+            background-color: white;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .footer {
+            display: grid;
+            position: relative;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            left: 0;
+            bottom: 0;
+            background-color: #dea112;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer div {
+            text-align: center;
+            font-size: 140%;
+            color: white;
+        }
+        
+        .box {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: 32% 32% 32%;
+            grid-gap: 1em;
+        }
+        
+        .item {
+            text-align: center;
+            font-size: 800%;
+            background-color: #4d5b5e;
+            line-height: 200%;
+            margin: 1.2%;
+            padding: 5% 0%;
+        }
+        
+        @media only screen and (max-width: 812px) {
+            .box {
+                grid-template-columns: auto auto;
+                grid-template-rows: 23% 23% 23% 23%;
+                grid-gap: 1em;
+            }
+            .item {
+                font-size: 400%;
+            }
+            .nav {
+                grid-template-columns: 0.2fr 1.2fr 1.2fr 1.2fr 1fr 2.5fr 0.2fr;
+                font-size: 75%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header class="nav">
+        <div>
+            About
+        </div>
+        <div>
+            Product
+        </div>
+        <div>
+            Our Team
+        </div>
+        <div>
+            Contact
+        </div>
+    </header>
+
+
+
+    <div class="header">
+        🌌
+    </div>
+
+    </br>
+    <div class="box ">
+        <div class="item">🚗</div>
+        <div class="item">🚜</div>
+        <div class="item">🛵</div>
+        <div class="item">🚂</div>
+        <div class="item">✈</div>
+        <div class="item">🛸</div>
+        <div class="item">🏰</div>
+        <div class="item">🚢</div>
+
+    </div>
+
+
+    <footer class="footer">
+        <div>
+            FOOTER
+        </div>
+    </footer>
+</body>
+
+</html>

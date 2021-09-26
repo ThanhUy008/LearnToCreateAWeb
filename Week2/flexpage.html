@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Nothing
+    </title>
+    <style>
+        body {
+            background-color: #0ea2cf;
+            margin: 0;
+        }
+        
+        .nav {
+            display: flex;
+            background-color: #11a8d6;
+            width: 100%;
+            font-size: 150%;
+            position: fixed;
+        }
+        
+        .nav div {
+            padding: 1% 2% 1% 2%;
+            text-align: center;
+            color: white;
+        }
+        
+        .nav div:nth-child(4) {
+            margin-left: auto;
+        }
+        
+        .header {
+            width: 100%;
+            height: 25%;
+            padding: 5% 0% 7%;
+            text-align: center;
+            font-size: 1400%;
+            background-color: white;
+            border-width: 0;
+        }
+        
+        .footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5%;
+            background-color: #dea112;
+            padding: 0% 0% 0% 0%;
+            text-align: center;
+        }
+        
+        .footer div {
+            display: flex;
+            padding: 0.3% 0% 0% 0%;
+            justify-content: center;
+            color: white;
+            font-size: 140%;
+        }
+        
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .item {
+            display: flex;
+            justify-content: center;
+            width: 31%;
+            height: 25%;
+            font-size: 800%;
+            background-color: #4d5b5e;
+            line-height: 200%;
+            margin: 1.1%;
+            padding: 5% 0%;
+        }
+        
+        @media only screen and (max-width: 812px) {
+            .item {
+                width: 43%;
+                padding: 5% 2% 1% 2%;
+                margin: 1.4%;
+            }
+            .nav {
+                width: 100%;
+                font-size: 100%;
+            }
+            .nav div:nth-child(4) {
+                margin-right: 2.8%;
+            }
+            .footer div {
+                padding: 2.2% 0% 0% 0%;
+                font-size: 100%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header class="nav">
+        <div>
+            About
+        </div>
+        <div>
+            Product
+        </div>
+        <div>
+            Our Team
+        </div>
+        <div>
+            Contact
+        </div>
+    </header>
+
+
+
+    <div class="header">
+        🌌
+    </div>
+
+
+    <div class="box ">
+        <div class="item">🚗</div>
+        <div class="item">🚜</div>
+        <div class="item">🛵</div>
+        <div class="item">🚂</div>
+        <div class="item">✈</div>
+        <div class="item">🛸</div>
+        <div class="item">🏰</div>
+        <div class="item">🚢</div>
+
+    </div>
+
+
+    <footer class="footer">
+        <div>
+            FOOTER
+        </div>
+    </footer>
+</body>
+
+</html>
