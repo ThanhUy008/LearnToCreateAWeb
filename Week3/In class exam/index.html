@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--
+Ho va ten   : Bùi Thanh Uy
+MSSV        : 18120645
+-->
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>Nothing</title>
+
+    <style>
+        html {
+            height: 1700px;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        .nav {
+            padding-top: 27px;
+            padding-bottom: 27px;
+            width: 100%;
+            top: 0;
+            background-color: #11a8d6;
+            display: grid;
+            grid-template-columns: 2fr 1.4fr 1.4fr 1.4fr 1.4fr 1.4fr 2fr;
+            grid-template-rows: 100%;
+            align-items: center;
+        }
+        
+        .nav div {
+            justify-content: center;
+            padding: 4% 2% 4% 2%;
+            text-align: center;
+            font-size: 120%;
+            color: white;
+            justify-content: center;
+            border: solid 2px #b8c71a;
+            border-radius: 10%;
+            margin: 1%;
+            border-style: groove;
+        }
+        
+        .nav div:nth-child(1) {
+            grid-column: 2/3;
+        }
+        
+        .banner {
+            height: 150px;
+        }
+        
+        .banner img {
+            height: 96px;
+            width: 100%;
+            position: absolute;
+        }
+        
+        .title {
+            font-size: 200%;
+            position: relative;
+            margin-bottom: auto;
+        }
+        
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-template-rows: 100%;
+            height: 1500px;
+            margin-left: 10px;
+            font-size: 110%;
+        }
+        
+        .content {
+            margin-top: 30 px;
+            margin-bottom: 24px;
+            padding: 5px;
+            font-size: 170%;
+            font-weight: 900;
+        }
+        
+        .Overview {
+            border-top: 3px solid orangered;
+            border-left: 3px solid orangered;
+        }
+        
+        .Prevention {
+            border: 4px solid pink;
+            border-style: dashed;
+        }
+        
+        .Symptoms {
+            border-top: 3px solid orangered;
+            border-left: 3px solid orangered;
+        }
+        
+        .leftmenu ul li {
+            font-size: 150%;
+            padding: 5% 2% 5% 2%;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            border-top: 2px solid black;
+        }
+        
+        .leftmenu ul li a {
+            text-decoration: none;
+            color: lightblue;
+        }
+        
+        .template li a {
+            color: #4287f5;
+            font-weight: 200;
+            font-size: 120%;
+        }
+        
+        .footer {
+            height: 50px;
+            display: grid;
+            position: relative;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            left: 0;
+            bottom: 0;
+            background-color: #32a4a8;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer div {
+            text-align: center;
+            font-size: 140%;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <div>
+            Health topics
+        </div>
+        <div>
+            Countries
+        </div>
+        <div>
+            Newsroom
+        </div>
+        <div>
+            Emergencies
+        </div>
+        <div>
+            About us
+        </div>
+    </header>
+    <div class="banner">
+        <img src="./images/banner.jpg">
+        <div class="title">
+            Coronavirus
+        </div>
+    </div>
+    <div class="main">
+        <div class="rightmenu">
+            <div class="content Overview">Overview</div>
+            <p>
+                Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
+            </p>
+
+            <p>
+                Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment. Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic
+                respiratory disease, and cancer are more likely to develop serious illness.
+            </p>
+
+            <p>
+                The best way to prevent and slow down transmission is to be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and
+                not touching your face.
+            </p>
+
+            <p>
+                The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).
+            </p>
+
+
+
+            <p>
+                Stay informed:
+            </p>
+            <ul class="template">
+
+                <li>
+                    <a href=" # "> Protect yourself: advice for the public</a>
+                </li>
+                <li>
+                    <a href=" # "> Myth busters</a>
+                </li>
+                <li>
+                    <a href=" # "> Questions and answers</a>
+                </li>
+                <li>
+                    <a href=" # "> Situation reports</a>
+                </li>
+                <li>
+                    <a href=" # ">All information on the COVID-19 outbreak</a>
+                </li>
+            </ul>
+            <div class="content Prevention">Prevention</div>
+            <p>
+                To prevent infection and to slow transmission of COVID-19, do the following:
+            </p>
+            <ul>
+
+                <li>
+                    Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub.
+                </li>
+                <li>
+                    Maintain at least 1 metre distance between you and people coughing or sneezing.
+                </li>
+                <li>
+                    Avoid touching your face.
+                </li>
+                <li>
+                    Cover your mouth and nose when coughing or sneezing.
+                </li>
+                <li>
+                    Stay home if you feel unwell.
+                </li>
+                <li>
+                    Refrain from smoking and other activities that weaken the lungs.
+                </li>
+                <li>
+                    Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people.
+                </li>
+            </ul>
+            <div class="content Symptoms">Symptoms</div>
+            <p>
+                COVID-19 affects different people in different ways. Most infected people will develop mild to moderate illness and recover without hospitalization.
+            </p>
+            <p>
+                Most common symptoms:
+            </p>
+            <ul>
+                <li>
+                    fever.
+                </li>
+                <li>
+                    dry cough.
+                </li>
+                <li>
+                    tiredness.
+                </li>
+            </ul>
+            <p>
+                Less common symptoms:
+            </p>
+            <ul>
+
+                <li>
+                    aches and pains.
+                </li>
+                <li>
+                    sore throat.
+                </li>
+                <li>
+                    diarrhoea.
+                </li>
+                <li>
+                    conjunctivitis.
+                </li>
+                <li>
+                    headache.
+                </li>
+                <li>
+                    loss of taste or smell.
+                </li>
+                <li>
+                    a rash on skin, or discolouration of fingers or toes.
+                </li>
+            </ul>
+            <p>
+                Serious symptoms:
+            </p>
+            <ul>
+
+                <li>
+                    difficulty breathing or shortness of breath.
+                </li>
+                <li>
+                    chest pain or pressure.
+                </li>
+                <li>
+                    loss of speech or movement.
+                </li>
+            </ul>
+            <p>
+                Seek immediate medical attention if you have serious symptoms. Always call before visiting your doctor or health facility.
+            </p>
+
+            <p>
+                People with mild symptoms who are otherwise healthy should manage their symptoms at home.
+            </p>
+
+            <p>
+                On average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.
+            </p>
+
+        </div>
+        <div class="leftmenu">
+
+            <ul style="list-style-type:none;">
+                <li>
+                    <a href=" # "> Stay safe</a>
+                </li>
+                <li>
+                    <a href="# "> Situation updates</a>
+                </li>
+                <li>
+                    <a href="# "> Research and guidance</a>
+                </li>
+                <li>
+                    <a href="# ">  Q&A</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <footer class="footer ">
+        <div>
+            &copy; 2021 WHO
+        </div>
+    </footer>
+</body>
+
+</html>
+
+</html>
