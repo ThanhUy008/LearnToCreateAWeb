@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<!--
+Ho va ten   : Bùi Thanh Uy
+MSSV        : 18120645
+-->
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>Chess board</title>
+    <link rel="stylesheet" href="chessgame.css">
+    
+</head>
+
+
+<body>
+    <header class="nav">
+        <div>
+            About
+        </div>
+        <div>
+            Product
+        </div>
+        <div>
+            Our Team
+        </div>
+        <div>
+            Other game
+        </div>
+        <div>
+            Contact
+        </div>
+    </header>
+    <div class="bigbody">
+        
+        <div class="chessboard">
+            
+            <div id ="0"></div>
+            <div id ="r0"></div>
+            <div class = "placeHolder"id ="l1"></div>
+            <div class="scoreHolder" id ="r5"></div>
+            <div class = "placeHolder"id ="l2"></div>
+            <div class = "placeHolder"id ="r1"></div>
+            <div class = "placeHolder"id ="l3"></div>
+            <div class = "placeHolder"id ="r2"></div>
+            <div class = "placeHolder"id ="l4"></div>
+            <div class = "placeHolder"id ="r3"></div>
+            <div id ="l5"></div>
+            <div class = "placeHolder" id ="r4"></div>
+            <div class="scoreHolder" id ="l6"></div>
+            <div id ="r6"></div>
+            <div id ="l7"></div>
+            <div id ="r7"></div>
+
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+
+
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+            <div class="item even"></div>
+            <div class="item odd"></div>
+        </div>
+
+
+        </div>
+       
+    </div>
+    
+    <script src = "pawn.js"></script>
+    <script src = "rock.js"></script>
+    <script src = "bishop.js"></script>
+    <script src = "queen.js"></script>
+    <script src = "knight.js"></script>
+    <script src = "king.js"></script>
+    <script type="text/javascript">
+
+        //SET UP:
+
+
+        var oldPosition = {
+                "rowStart": null,
+                "rowEnd": null,
+                "columnStart": null,
+                "columnEnd": null,
+                "inHTML": null
+        };
+        var savePawnCor = {
+                "rowStart": null,
+                "columnStart": null,
+        };
+        //1 = turn white
+        //2 = turn black
+        var turnBase = 1;
+        var enemiesCor;
+        var whiteScore;
+        var blackScore;
+        
+        window.onload = function() {
+            whiteScore = 0;
+            blackScore = 0;
+            let chessBoardBox = document.getElementsByClassName("item");
+            for (let c of chessBoardBox) {
+                setGridPosition(c);
+                getGridPosition(c);
+                setPickUp(c)
+                setDropDown(c);
+            }
+            let placeHolders = document.getElementsByClassName("placeHolder");
+            for (let c of placeHolders) {
+                bewtowPawn(c);
+                
+            }
+            buildChessboard();
+            showTurn();
+            document.getElementById("r5").innerHTML = blackScore;
+            document.getElementById("l6").innerHTML = whiteScore;
+        }
+        
+        function bewtowPawn(obj)
+        {
+            obj.onclick = function(e)
+            {
+                
+                let x = e.clientX;
+                let y = e.clientY;
+                
+               
+                let value = pawnTransfrom(savePawnCor,document.elementFromPoint(x,y),turnBase);
+                turnBase = value[1];
+                if(value[0])
+                {
+                    savePawnCor.rowStart = null;
+                    savePawnCor.columnStart = null;
+                }
+                
+                showTurn();
+            }
+            
+        }
+        function setGridPosition(obj) {
+            let chessBoardBox = document.getElementsByClassName("item");
+            let i = 2;
+            let j = 1;
+            for (let k of chessBoardBox) {
+                if (i >= 10) {
+                    i = 2;
+                    j++;
+                }
+                k.style['grid-column-start'] = parseInt(i);
+                k.style['grid-column-end'] = parseInt(i + 1);
+                k.style['grid-row-start'] = parseInt(j);
+                k.style['grid-row-end'] = parseInt(j + 1);
+                k.id = (j - 1) * 8 + i - 1;
+                i++;
+
+
+            }
+        }
+        function buildChessboard()
+        {
+            whiteScore = 0;
+            blackScore = 0;
+            for(let i = 1; i < 65; i++)
+            {
+                document.getElementById(i).innerHTML = ``;
+            }
+            for(let i = 9 ;i < 17 ; i++)
+            {
+                document.getElementById(i).innerHTML = `<div class="chesspiece pawn black">♙</div>`;
+            }
+            for(let i = 49 ;i < 57 ; i++)
+            {
+                document.getElementById(i).innerHTML = `<div class="chesspiece pawn white">♙</div>`;
+            }
+            //rock
+            document.getElementById("1").innerHTML = `<div class="chesspiece rock black">♖</div>`;
+            document.getElementById("8").innerHTML = `<div class="chesspiece rock black">♖</div>`;
+            document.getElementById("57").innerHTML = `<div class="chesspiece rock white">♖</div>`;
+            document.getElementById("64").innerHTML = `<div class="chesspiece rock white">♖</div>`;
+            //knight
+            document.getElementById("2").innerHTML = `<div class="chesspiece knig black">♘</div>`;
+            document.getElementById("7").innerHTML = `<div class="chesspiece knig black">♘</div>`;
+            document.getElementById("58").innerHTML = `<div class="chesspiece knig white">♘</div>`;
+            document.getElementById("63").innerHTML = `<div class="chesspiece knig white">♘</div>`;
+            //knight
+            document.getElementById("3").innerHTML = `<div class="chesspiece bisp black">♗</div>`;
+            document.getElementById("6").innerHTML = `<div class="chesspiece bisp black">♗</div>`;
+            document.getElementById("59").innerHTML = `<div class="chesspiece bisp white">♗</div>`;
+            document.getElementById("62").innerHTML = `<div class="chesspiece bisp white">♗</div>`;
+            //queen
+            document.getElementById("5").innerHTML = `<div class="chesspiece quen black">♔</div>`;
+            document.getElementById("61").innerHTML = `<div class="chesspiece quen white">♔</div>`;
+            //king
+            document.getElementById("4").innerHTML = `<div class="chesspiece king black">♕</div>`;
+            document.getElementById("60").innerHTML = `<div class="chesspiece king white">♕</div>`;
+            
+            document.getElementById("r5").innerHTML = blackScore;
+            document.getElementById("l6").innerHTML = whiteScore;
+        }
+
+        function getGridPosition(obj) 
+        {
+            obj.addEventListener("mouseenter", () => {
+                const style = window.getComputedStyle(obj);
+                curPosition = {
+                    "rowStart": style.gridRowStart,
+                    "rowEnd": style.gridRowEnd,
+                    "columnStart": style.gridColumnStart,
+                    "columnEnd": style.gridColumnEnd
+                }
+                
+                
+            })
+            
+        }
+        
+    
+
+        //MAIN FUNCTION
+        function setPickUp(obj) {
+            
+            obj.onmousedown = function() {
+                
+                this.isDown = true;
+
+                let curCellId = (parseInt((curPosition.rowStart)) - 1) * 8 + parseInt(curPosition.columnStart) - 1;
+                let curCell = document.getElementById(curCellId);
+                
+                oldPosition = {
+                    "rowStart": curPosition.rowStart,
+                    "rowEnd": curPosition.rowEnd,
+                    "columnStart": curPosition.columnStart,
+                    "columnEnd": curPosition.columnEnd,
+                    "inHTML": curCell.innerHTML,
+                    "className":curCell.innerHTML.substring(23,33)
+                }
+
+                if(!curCell.innerHTML || curCell.innerHTML.length == 0)
+                {
+                    oldPosition.inHTML = "";
+                }
+                let type = 1;
+           
+                if(oldPosition.className.substring(5,10).localeCompare("black") == 0){
+                    type = 2;
+                }
+
+
+                if(oldPosition.className.substring(0,4).localeCompare("pawn") == 0){
+                    
+                    enemiesCor = pawnMoveRule(oldPosition,type);
+                }
+                if(oldPosition.className.substring(0,4).localeCompare("rock") == 0){
+                    
+                    enemiesCor = rockMoveRule(oldPosition,type);
+                }
+                if(oldPosition.className.substring(0,4).localeCompare("bisp") == 0){
+                    
+                    enemiesCor = bishopMoveRule(oldPosition,type);
+                }
+                if(oldPosition.className.substring(0,4).localeCompare("quen") == 0){
+                    
+                    enemiesCor = queenMoveRule(oldPosition,type);
+                }
+                if(oldPosition.className.substring(0,4).localeCompare("knig") == 0){
+                    
+                    enemiesCor = knightMoveRule(oldPosition,type);
+                } 
+                if(oldPosition.className.substring(0,4).localeCompare("king") == 0){
+                    
+                    enemiesCor = kingMoveRule(oldPosition,type);
+                }
+                showMove(enemiesCor,type);       
+           
+            }
+
+        }
+        function countScore(enemyName)
+        {
+            if(enemyName.substring(23,33) == "king black")
+            {
+                buildChessboard();
+                return;
+            }
+            if(enemyName.substring(23,33) == "king white")
+            {
+                buildChessboard();
+                return;
+            }
+            if(enemyName.substring(23,33) == "pawn black")
+            {
+                whiteScore = whiteScore + 1;
+            }
+            if(enemyName.substring(23,33) == "pawn white")
+            {
+                blackScore = blackScore + 1;
+            }
+            if(enemyName.substring(23,33) == "knig black")
+            {
+                whiteScore = whiteScore + 3;
+            }
+            if(enemyName.substring(23,33) == "knig white")
+            {
+                blackScore = blackScore + 3;
+            }
+            if(enemyName.substring(23,33) == "rock black")
+            {
+                whiteScore = whiteScore + 3;
+            }
+            if(enemyName.substring(23,33) == "rock white")
+            {
+                blackScore = blackScore + 3;
+            }
+            if(enemyName.substring(23,33) == "bisp black")
+            {
+                whiteScore = whiteScore + 5;
+            }
+            if(enemyName.substring(23,33) == "bisp white")
+            {
+                blackScore = blackScore + 5;
+            }
+            if(enemyName.substring(23,33) == "quen black")
+            {
+                whiteScore = whiteScore + 9;
+            }
+            if(enemyName.substring(23,33) == "quen white")
+            {
+                blackScore = blackScore + 9;
+            }
+
+            document.getElementById("r5").innerHTML = blackScore;
+            document.getElementById("l6").innerHTML = whiteScore;
+            
+        }
+        
+        function setDropDown(obj) 
+        {
+            
+            
+            obj.onmouseup = function() {
+               
+                this.isDown = false;
+                
+                let correctMove = [false,turnBase];
+                let oldPosId = (parseInt((oldPosition.rowStart)) - 1) * 8 + parseInt(oldPosition.columnStart) - 1;
+                let oldPos = document.getElementById(oldPosId);
+                
+                let type = 1;
+                if(oldPosition.className.substring(5,10).localeCompare("black") == 0){
+                    type = 2;
+                }
+
+                
+                hideMove(enemiesCor,type);
+
+                if(oldPosition.inHTML)
+                {
+                    
+                    let newPosId = (parseInt((curPosition.rowStart)) - 1) * 8 + parseInt(curPosition.columnStart) - 1;
+                    let newPos = document.getElementById(newPosId);
+
+                    let dx = curPosition.rowStart - oldPosition.rowStart;
+                    let dy = curPosition.columnStart - oldPosition.columnStart;
+                    
+                    correctMove = moveRule(oldPosition,curPosition);
+                    turnBase = correctMove[1];
+                    if(correctMove[0])
+                    {
+                        
+                        if(dx != 0 || dy !=0){
+                            let save = newPos.innerHTML;
+                            
+                            oldPos.innerHTML = '';
+
+                            newPos.innerHTML = oldPosition.inHTML;    
+
+                            countScore(save);
+                            
+                            
+                        }
+                    }
+                }
+
+                oldPosition = {
+                "rowStart": null,
+                "rowEnd": null,
+                "columnStart": null,
+                "columnEnd": null,
+                "inHTML": null
+                };
+
+                if(savePawnCor.rowStart == null)
+                savePawnCor = {
+                "rowStart": null,
+                "columnStart": null,
+                };
+
+                enemiesCor = null;
+                correctMove[0] = false;
+                
+            }
+
+            obj.onmousemove = function() {
+                if (this.isDown) {
+                    
+                    
+                }
+                
+                
+            }
+
+
+        }  
+
+
+        //RULE:
+       
+       
+
+
+    //Moving rule
+        function moveRule(oldCor,newCor)
+        {
+            let type = 1;
+            let returnValue = [false,1];
+            
+            if(oldCor.className.substring(5,10).localeCompare("black") == 0){
+                type = 2;
+               
+            }
+            
+            if(oldCor.className.substring(0,4).localeCompare("pawn") == 0){
+                
+                returnValue = pawnCorrectMove(oldCor,newCor,type, turnBase);
+            }
+            if(oldCor.className.substring(0,4).localeCompare("rock") == 0)
+            {
+                returnValue = rockCorrectMove(oldCor,newCor,type, turnBase);
+            }
+            if(oldCor.className.substring(0,4).localeCompare("bisp") == 0)
+            {
+                returnValue = bishopCorrectMove(oldCor,newCor,type,turnBase);
+            }
+            if(oldCor.className.substring(0,4).localeCompare("quen") == 0)
+            {
+                returnValue = queenCorrectMove(oldCor,newCor,type,turnBase);
+            }
+            if(oldCor.className.substring(0,4).localeCompare("knig") == 0)
+            {
+                
+                returnValue = knightCorrectMove(oldCor,newCor,type,turnBase);
+            }
+            if(oldCor.className.substring(0,4).localeCompare("king") == 0)
+            {
+                returnValue = kingCorrectMove(oldCor,newCor,type,turnBase);
+            }
+            turnBase = returnValue[1];
+            showTurn();
+            console.log(returnValue[0]);
+            return returnValue;
+        }
+
+
+
+
+
+    //show move 
+    function showMove(arr,type)
+    {
+        let currCell = document.getElementById((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1);
+        if(currCell.innerHTML)
+        {
+            if(turnBase == type)
+            for(let i = 1; i < 65;i++)
+            {
+                if(arr[i] == 1)
+                {
+                    currCell = document.getElementById(i);
+                    currCell.style.backgroundColor = "#8dd606";
+                }
+            }
+        }
+    } 
+    //hide move  
+    function hideMove(arr,type)
+    {
+        
+        let currCell = document.getElementById((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1);
+        if(currCell.innerHTML)
+        if(turnBase == type)
+        for(let i = 1; i < 65;i++)
+        {
+            if(arr[i] == 1)
+            {
+                let currCell = document.getElementById(i);
+                if(currCell.className.substring(5).localeCompare("even") == 0)
+                currCell.style.backgroundColor = "#ccf0d8";
+                else
+                {
+                    currCell.style.backgroundColor = "#89f0dd";
+                }
+            }
+        }
+    }     
+
+    function showTurn()
+    {
+        if(turnBase == 1)
+        {
+            document.getElementById("l7").style.background = "green";
+            document.getElementById("l7").style.color = "white";
+            document.getElementById("l7").innerHTML = "WHITE TURN";
+            document.getElementById("l7").style.fontSize = "150%";
+            document.getElementById("l7").style.textAlign = "center";
+            document.getElementById("l7").style.lineHeight = "100%";
+            
+            document.getElementById("r0").style.background = "";
+            document.getElementById("r0").innerHTML = "";
+        }
+        if(turnBase == 2)
+        {
+            document.getElementById("r0").style.background = "green";
+            document.getElementById("r0").style.color = "white";
+            document.getElementById("r0").innerHTML = "BLACK TURN";
+            document.getElementById("r0").style.fontSize = "150%";
+            document.getElementById("r0").style.textAlign = "center";
+            document.getElementById("r0").style.lineHeight = "100%";
+
+            document.getElementById("l7").style.background = "";
+            document.getElementById("l7").innerHTML = "";
+        }
+    }
+
+    </script>
+</body>
+
+</html>
+
+</html>

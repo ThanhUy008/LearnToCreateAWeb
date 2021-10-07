@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Nothing
+    </title>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        .nav {
+            width: 100%;
+            top: 0;
+            background-color: #11a8d6;
+            display: grid;
+            grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 3fr 0.2fr;
+            grid-template-rows: 100%;
+            position: sticky;
+            align-items: center;
+        }
+        
+        .nav div {
+            justify-content: center;
+            padding: 4% 2% 4% 2%;
+            text-align: left;
+            font-size: 150%;
+            color: white;
+        }
+        
+        .nav div:nth-child(1) {
+            grid-column: 2/3;
+        }
+        
+        .nav div:nth-child(4) {
+            margin-left: auto;
+            padding: 0% 0% 0% 0%;
+            grid-column: 6/7;
+        }
+        
+        .header {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            font-size: 1400%;
+            padding: 1% 0% 7%;
+            background-color: white;
+            text-align: center;
+            justify-content: center;
+        }
+        
+       
+        
+        .body {
+            margin-left:20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 4fr;
+            grid-template-rows: auto auto auto;
+            grid-gap: 1em;
+            align-items: center;
+            
+        }
+        .numIn,.numOut{
+            border-radius: 25px;
+        }
+        .cal{
+            width: 1.3em;
+            height: 1.3em;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            -webkit-appearance: none;
+            outline: none;
+            
+          
+        }
+        .cal:checked {
+            background-color: black;
+           
+        }
+        .container1{
+            grid-area: 1/3/2/7;
+        }
+        .container2{
+            grid-area: 2/3/3/7;
+        }
+        #announ{
+            color:red;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div style="margin-left:20px;"><h1>Bé tập tính</h1></div>
+
+
+    
+
+    <div class="body">
+        <div>Số thứ nhất</div>
+
+        <input type="text" class ="numIn" name="Số thứ nhất">
+
+        <div class="container1">
+            <input type="radio" id="type1" name="cal" class="cal" value="+">
+            <label for="cong" > Cộng</label>
+            <input type="radio" id="type2" name="cal" class="cal" value="-">
+            <label for="tru"> Trừ</label>
+        </div>
+
+        <div>Số thứ hai</div>
+
+        <input type="text" class ="numIn" name="Số thứ hai">
+
+        <div class="container2">
+        <input type="radio" id="type3" name="cal" class="cal" value="*">
+        <label for="nhan"> Nhân</label>
+        <input type="radio" id="type5" name="cal" class="cal" value="/">
+        <label for="chia"> Chia</label>
+        </div>
+
+        <div>Kết quả</div>
+
+        <input type="text" class ="numOut" name="result" >
+        <input type="submit" name ="calBtn" value="Tính" onclick="btnClick()">
+        
+        <div style ="grid-area:4/1/5/2">Thông báo</div>
+        <div id ="announ" style ="grid-area:4/2/5/7"></div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            
+            
+            let inputFields = document.getElementsByClassName("numIn");
+            
+            for(let i of inputFields)
+            {
+                
+                setUpInput(i);
+            }
+        }
+
+        function btnClick()
+        {
+            let calOption = checkIfRadioChecked();
+            if(calOption[0])
+            {
+                let nums = document.getElementsByClassName("numIn");
+                for(let i of nums)
+                {
+                    if(!isNumber(i.value))
+                    {
+                        document.getElementById("announ").innerHTML = "Error: Giá trị hai số đầu vào không phải là số hợp lệ";
+                        return;
+                    }
+                }
+                document.getElementById("announ").innerHTML = "";
+                        
+                let res = document.getElementsByName("result");
+                    res[0] = 0;
+                switch (calOption[1]) {
+                    case '+':
+                        res[0].value = parseInt(nums[0].value) + parseInt(nums[1].value);
+                        break;
+                    case '-':
+                        res[0].value  = nums[0].value - nums[1].value;
+                        break;
+                    case '*':
+                        res[0].value  = nums[0].value * nums[1].value;
+                        break;
+                    case '/':
+                        res[0].value  = nums[0].value / nums[1].value;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                document.getElementById("announ").innerHTML = "Error: Chưa chọn phép tính";
+            }
+        }
+        function checkIfRadioChecked() {
+            let radioChecked = document.getElementsByName("cal");
+            let returnVal = [false,null];
+            for(let i of radioChecked)
+            {
+                
+                if(i.checked)
+                {
+                    returnVal[1] = i.value;
+                    returnVal[0] = true;
+                    console.log(i.value);
+                    return returnVal;
+                }
+            }
+            
+            returnVal[0] = false;
+            console.log(returnVal);
+            return returnVal;
+        }
+        function isNumber(n) 
+        {
+            return !isNaN(parseFloat(n)) && !isNaN(n - 0)
+        }
+
+        
+        function setUpInput(obj)
+        {
+            obj.onfocus = function()
+            {
+                
+               
+            }
+            obj.onblur = function()
+            {
+                console.log(this);
+                let x = this.value;
+                if(!isNumber(x))
+                {
+                    document.getElementById("announ").innerHTML = "Error: giá trị nhập ở ô " + this.name + " không phải là số hợp lệ";
+                }
+                else
+                {
+                    if(this.name == "Số thứ nhất")
+                    {
+                        let y = document.getElementsByName("Số thứ hai")[0].value;
+                        if(isNumber(y))
+                        {
+                            document.getElementById("announ").innerHTML = "";
+                        }
+                    }
+                    else
+                    {
+                        let y = document.getElementsByName("Số thứ nhất")[0].value;
+                        if(isNumber(y))
+                        {
+                            document.getElementById("announ").innerHTML = "";
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
