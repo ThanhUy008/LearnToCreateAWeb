@@ -108,36 +108,36 @@
             }
             let tempCor;
             
-            //left1
+            //topleft
            
             tempCor = (parseInt(oldCor.rowStart) - 2) * 8 + parseInt(oldCor.columnStart) - 2;
             
             corrArr[tempCor] = 1;
-            //left 2
+            //top up
             tempCor = (parseInt(oldCor.rowStart) - 2) * 8 + parseInt(oldCor.columnStart) - 1;
             
             corrArr[tempCor] = 1;
-            //top1
+            //top right
             tempCor = (parseInt(oldCor.rowStart) - 2) * 8 + parseInt(oldCor.columnStart);
             
             corrArr[tempCor] = 1;
-            //top2
+            //right
             tempCor = (parseInt(oldCor.rowStart) - 1) * 8 + parseInt(oldCor.columnStart);
             
             corrArr[tempCor] = 1;
-            //right1
+            //down right
             tempCor = (parseInt(oldCor.rowStart)) * 8 + parseInt(oldCor.columnStart);
             
             corrArr[tempCor] = 1;
-            //right2
+            //down down
             tempCor = (parseInt(oldCor.rowStart)) * 8 + parseInt(oldCor.columnStart) - 1;
             
             corrArr[tempCor] = 1;
-            //down1
+            //down left
             tempCor = (parseInt(oldCor.rowStart)) * 8 + parseInt(oldCor.columnStart) - 2;
             
             corrArr[tempCor] = 1;
-            //down2
+            //left
             tempCor = (parseInt(oldCor.rowStart) -1 ) * 8 + parseInt(oldCor.columnStart) - 2;
             
             corrArr[tempCor] = 1;
