@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Nothing
+    </title>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        .nav {
+            width: 100%;
+            top: 0;
+            background-color: #11a8d6;
+            display: grid;
+            grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 3fr 0.2fr;
+            grid-template-rows: 100%;
+            position: sticky;
+            align-items: center;
+        }
+        
+        .nav div {
+            justify-content: center;
+            padding: 4% 2% 4% 2%;
+            text-align: left;
+            font-size: 150%;
+            color: white;
+        }
+        
+        .nav div:nth-child(1) {
+            grid-column: 2/3;
+        }
+        
+        .nav div:nth-child(4) {
+            margin-left: auto;
+            padding: 0% 0% 0% 0%;
+            grid-column: 6/7;
+        }
+        
+        .header {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            font-size: 1400%;
+            padding: 1% 0% 7%;
+            background-color: white;
+            text-align: center;
+            justify-content: center;
+        }
+        
+       
+        
+        .body {
+            margin-left:20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 4fr;
+            grid-template-rows: auto auto auto;
+            grid-gap: 1em;
+            align-items: center;
+            
+        }
+        .numIn,.numOut{
+            border-radius: 25px;
+        }
+        .cal{
+            width: 1.3em;
+            height: 1.3em;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            -webkit-appearance: none;
+            outline: none;
+            
+          
+        }
+        .cal:checked {
+            background-color: black;
+           
+        }
+        .container1{
+            grid-area: 1/3/2/7;
+        }
+        .container2{
+            grid-area: 2/3/3/7;
+        }
+        #announ{
+            color:red;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div style="margin-left:20px;"><h1>Bé tập tính</h1></div>
+
+
+    
+
+    <div class="body">
+        <div>Số thứ nhất</div>
+
+        <input type="text" id="firstNum" class ="numIn" name="Số thứ nhất">
+
+        <div class="container1">
+            <input type="radio" id="type1" name="cal" class="cal" value="+">
+            <label for="cong" > Cộng</label>
+            <input type="radio" id="type2" name="cal" class="cal" value="-">
+            <label for="tru"> Trừ</label>
+        </div>
+
+        <div>Số thứ hai</div>
+
+        <input type="text" id="secondNum"  class ="numIn" name="Số thứ hai">
+
+        <div class="container2">
+        <input type="radio" id="type3" name="cal" class="cal" value="*">
+        <label for="nhan"> Nhân</label>
+        <input type="radio" id="type5" name="cal" class="cal" value="/">
+        <label for="chia"> Chia</label>
+        </div>
+
+        <div>Kết quả</div>
+
+        <input type="text"  id="result" class ="numOut" name="result" >
+        <input type="submit" id="tinh" name ="calBtn" value="Tính">
+        
+        <div style ="grid-area:4/1/5/2">Thông báo</div>
+        <div id ="announ" style ="grid-area:4/2/5/7"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).on('load',function() {
+            
+            $(".numIn").each(function(index,value){
+                setUpInput(value);
+            })
+            
+        });
+        $("#tinh").click(btnClick);
+        function btnClick()
+        {
+            let calOption = checkIfRadioChecked();
+            if(calOption[0])
+            {
+                var isNotValid = false;
+                $(".numIn").each(function(index,value){
+                    
+                    if(!isNumber($(value).val()))
+                    {
+                        
+                        $("#announ").html("Error: Giá trị hai số đầu vào không phải là số hợp lệ");
+                        isNotValid = true;
+                        return false;
+                    }
+                    
+                })
+                if(isNotValid) return;
+                $("#announ").html("");
+                        
+                let res = $("#result");
+                switch (calOption[1]) {
+                    case '+':
+                        res.val(parseInt($("#firstNum").val()) + parseInt($("#secondNum").val()));
+                        break;
+                    case '-':
+                        res.val(parseInt($("#firstNum").val()) - parseInt($("#secondNum").val()));
+                        break;
+                    case '*':
+                      res.val(parseInt($("#firstNum").val()) * parseInt($("#secondNum").val()));
+                        break;
+                    case '/':
+                      res.val(parseInt($("#firstNum").val()) / parseInt($("#secondNum").val()));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                $("#announ").html("Error: Chưa chọn phép tính");
+            }
+        }
+        function checkIfRadioChecked() {
+            let radioChecked = $(".cal");
+            let returnVal = [false,null];
+            for(let i of radioChecked)
+            {
+                
+                if(i.checked)
+                {
+                    returnVal[1] = i.value;
+                    returnVal[0] = true;
+                    return returnVal;
+                }
+            }
+            
+            returnVal[0] = false;
+            return returnVal;
+        }
+        function isNumber(n) 
+        {
+            if(!n) return false;
+            return !isNaN(parseFloat(n)) && !isNaN(n - 0)
+        }
+
+        
+        function setUpInput(obj)
+        {
+          
+            
+            $(obj).blur(function()
+            {
+                let x = this.value;
+                if(!isNumber(x))
+                {
+                    $("#announ").html("Error: giá trị nhập ở ô " + this.name + " không phải là số hợp lệ");
+                }
+                else
+                {
+                    if(this.name == "Số thứ nhất")
+                    {
+                        let y = $("#secondNum").val();
+                        if(isNumber(y))
+                        {
+                            $("#announ").html("");
+                        }
+                    }
+                    else
+                    {
+                        let y = $("#firstNum").val();
+                        if(isNumber(y))
+                        {
+                            $("#announ").html("");
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -19,19 +19,29 @@ MSSV        : 18120645
 <body>
     <header class="nav">
         <div>
+            <a>
             About
+        </a>
         </div>
         <div>
+            <a>
             Product
+        </a>
         </div>
         <div>
+            <a>
             Our Team
+        </a>
         </div>
         <div>
+            <a>
             Other game
+        </a>
         </div>
         <div>
+            <a>
             Contact
+        </a>
         </div>
     </header>
     <div class="bigbody">
@@ -40,16 +50,16 @@ MSSV        : 18120645
             
             <div class= "testnat" id ="0"></div>
             <div class= "testnat" id ="r0"></div>
-            <div class = "placeHolder testnat" id ="l1"></div>
+            <div class = "placeHolder left testnat" id ="l1"></div>
             <div class="scoreHolder testnat" id ="r5"></div>
-            <div class = "placeHolder testnat"id ="l2"></div>
-            <div class = "placeHolder testnat"id ="r1"></div>
-            <div class = "placeHolder testnat"id ="l3"></div>
-            <div class = "placeHolder testnat"id ="r2"></div>
-            <div class = "placeHolder testnat"id ="l4"></div>
-            <div class = "placeHolder testnat"id ="r3"></div>
+            <div class = "placeHolder left testnat"id ="l2"></div>
+            <div class = "placeHolder right testnat"id ="r1"></div>
+            <div class = "placeHolder left testnat"id ="l3"></div>
+            <div class = "placeHolder right testnat"id ="r2"></div>
+            <div class = "placeHolder left testnat"id ="l4"></div>
+            <div class = "placeHolder right testnat"id ="r3"></div>
             <div class= "testnat" id ="l5"></div>
-            <div class = "placeHolder testnat" id ="r4"></div>
+            <div class = "placeHolder right testnat" id ="r4"></div>
             <div class="scoreHolder testnat" id ="l6"></div>
             <div class= "testnat" id ="r6"></div>
             <div class= "testnat" id ="l7"></div>
@@ -139,6 +149,7 @@ MSSV        : 18120645
     <script src = "queen.js"></script>
     <script src = "knight.js"></script>
     <script src = "king.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
 
         //SET UP:
@@ -167,39 +178,38 @@ MSSV        : 18120645
         var mouseisDown;
 
         window.onload = function() {
+            
             whiteScore = 0;
             blackScore = 0;
             mouseisDown = false;
-            let chessBoardBox = document.getElementsByClassName("item");
-            for (let c of chessBoardBox) {
-                
-                setGridPosition(c);
-                getGridPosition(c);
-                setMouseDown(c);
-                setMouseUp(c);
-                
-            }
-            
-            let testnat = document.getElementsByClassName("testnat");
-            for (let c of testnat) {
-                getGridPosition(c);
-                setMouseUp(c);
-                
-            }
+            setGridPosition();
+            $('.item').each(function(index,value)
+            {
+                getGridPosition(value);
+                setMouseDown(index,value);
+                setMouseUp(value);
+            });
 
-            let placeHolders = document.getElementsByClassName("placeHolder");
-            for (let c of placeHolders) {
-                bewtowPawn(c);
-            }
+            $('.testnat').each(function(index,value){
+                getGridPosition(value);
+                setMouseUp(value);
+            });
+           
+            
+            $('.placeHolder').each(function(index,value){
+                bewtowPawn(value);
+               
+            });
+            
             buildChessboard();
             showTurn();
-            document.getElementById("r5").innerHTML = blackScore;
-            document.getElementById("l6").innerHTML = whiteScore;
+            $("#r5").html(blackScore);
+            $("#l6").html(whiteScore);
         }
         
         //Set ID and grid area for chessboard
-        function setGridPosition(obj) {
-            let chessBoardBox = document.getElementsByClassName("item");
+        function setGridPosition() {
+            let chessBoardBox = $('.item');
             let i = 2;
             let j = 1;
             for (let k of chessBoardBox) {
@@ -213,10 +223,8 @@ MSSV        : 18120645
                 k.style['grid-row-end'] = parseInt(j + 1);
                 k.id = (j - 1) * 8 + i - 1;
                 i++;
-
-
             }
-            let testnat = document.getElementsByClassName("testnat");
+            let testnat = $('.testnat');
             i = 1;
             j = 1;
             for (let k of testnat) {
@@ -246,7 +254,6 @@ MSSV        : 18120645
                 
                 
             })
-            
         }
         //Build chessboard
         function buildChessboard()
@@ -264,65 +271,65 @@ MSSV        : 18120645
             
             for(let i = 1; i < 65; i++)
             {
-                document.getElementById(i).innerHTML = ``;
+                $('#' + i).html(``);
             }
             for(let i = 9 ;i < 17 ; i++)
             {
-                document.getElementById(i).innerHTML = `<div class="chesspiece pawn black">♙</div>`;
+                $('#' + i).html(`<div class="chesspiece pawn black">♙</div>`);
             }
             for(let i = 49 ;i < 57 ; i++)
             {
-                document.getElementById(i).innerHTML = `<div class="chesspiece pawn white">♙</div>`;
+                $('#' + i).html( `<div class="chesspiece pawn white">♙</div>`);
             }
             //rock
-            document.getElementById("1").innerHTML = `<div class="chesspiece rock black">♖</div>`;
-            document.getElementById("8").innerHTML = `<div class="chesspiece rock black">♖</div>`;
-            document.getElementById("57").innerHTML = `<div class="chesspiece rock white">♖</div>`;
-            document.getElementById("64").innerHTML = `<div class="chesspiece rock white">♖</div>`;
+            $("#1").html(`<div class="chesspiece rock black">♖</div>`);
+            $("#8").html(`<div class="chesspiece rock black">♖</div>`);
+            $("#57").html(`<div class="chesspiece rock white">♖</div>`);
+            $("#64").html(`<div class="chesspiece rock white">♖</div>`);
             //knight
-            document.getElementById("2").innerHTML = `<div class="chesspiece knig black">♘</div>`;
-            document.getElementById("7").innerHTML = `<div class="chesspiece knig black">♘</div>`;
-            document.getElementById("58").innerHTML = `<div class="chesspiece knig white">♘</div>`;
-            document.getElementById("63").innerHTML = `<div class="chesspiece knig white">♘</div>`;
+            $("#2").html(`<div class="chesspiece knig black">♘</div>`);
+            $("#7").html(`<div class="chesspiece knig black">♘</div>`);
+            $("#58").html(`<div class="chesspiece knig white">♘</div>`);
+            $("#63").html(`<div class="chesspiece knig white">♘</div>`);
             //knight
-            document.getElementById("3").innerHTML = `<div class="chesspiece bisp black">♗</div>`;
-            document.getElementById("6").innerHTML = `<div class="chesspiece bisp black">♗</div>`;
-            document.getElementById("59").innerHTML = `<div class="chesspiece bisp white">♗</div>`;
-            document.getElementById("62").innerHTML = `<div class="chesspiece bisp white">♗</div>`;
+            $("#3").html(`<div class="chesspiece bisp black">♗</div>`);
+            $("#6").html(`<div class="chesspiece bisp black">♗</div>`);
+            $("#59").html(`<div class="chesspiece bisp white">♗</div>`);
+            $("#62").html(`<div class="chesspiece bisp white">♗</div>`);
             //queen
-            document.getElementById("5").innerHTML = `<div class="chesspiece quen black">♔</div>`;
-            document.getElementById("61").innerHTML = `<div class="chesspiece quen white">♔</div>`;
+            $("#5").html(`<div class="chesspiece quen black">♔</div>`);
+            $("#61").html(`<div class="chesspiece quen white">♔</div>`);
             //king
-            document.getElementById("4").innerHTML = `<div class="chesspiece king black">♕</div>`;
-            document.getElementById("60").innerHTML = `<div class="chesspiece king white">♕</div>`;
+            $("#4").html(`<div class="chesspiece king black">♕</div>`);
+            $("#60").html(`<div class="chesspiece king white">♕</div>`);
             
-            document.getElementById("r5").innerHTML = blackScore;
-            document.getElementById("l6").innerHTML = whiteScore;
+            $("#r5").html(blackScore);
+            $("#l6").html(whiteScore);
         }
         
         
         
 
         //MAIN FUNCTION
-        function setMouseDown(obj) {
+        function setMouseDown(index,obj) {
             
-            obj.onmousedown = function() {
+            $(obj).mousedown(function() {
                 
                 mouseisDown = true;
                 
                 let curCellId = (parseInt((curPosition.rowStart)) - 1) * 8 + parseInt(curPosition.columnStart) - 1;
-                let curCell = document.getElementById(curCellId);
+                let curCell = $('#' + (curCellId));
                 
                 oldPosition = {
                     "rowStart": curPosition.rowStart,
                     "rowEnd": curPosition.rowEnd,
                     "columnStart": curPosition.columnStart,
                     "columnEnd": curPosition.columnEnd,
-                    "inHTML": curCell.innerHTML,
-                    "className":curCell.innerHTML.substring(23,33)
+                    "inHTML": curCell.html(),
+                    "className":curCell.html().substring(23,33)
                 }
-
-                if(!curCell.innerHTML || curCell.innerHTML.length == 0)
+                
+                if(!curCell.html() || curCell.html().length == 0)
                 {
                     oldPosition.inHTML = "";
                 }
@@ -336,6 +343,7 @@ MSSV        : 18120645
                 if(oldPosition.className.substring(0,4).localeCompare("pawn") == 0){
                     
                     enemiesCor = pawnMoveRule(oldPosition,type);
+                    
                 }
                 if(oldPosition.className.substring(0,4).localeCompare("rock") == 0){
                     
@@ -357,22 +365,23 @@ MSSV        : 18120645
                     
                     enemiesCor = kingMoveRule(oldPosition,type);
                 }
+                
                 //show the place where chesspiece can go
                 showMove(enemiesCor,type);       
            
-            }
+            });
 
         }
         function setMouseUp(obj){
             
-            obj.onmouseup = function() 
+            $(obj).mouseup(function() 
             {
                 if(mouseisDown)
                 {
-                
+                    
                     let correctMove = [false,turnBase];
                     let oldPosId = (parseInt((oldPosition.rowStart)) - 1) * 8 + parseInt(oldPosition.columnStart) - 1;
-                    let oldPos = document.getElementById(oldPosId);
+                    let oldPos = $('#' + (oldPosId));
                     
                     let type = 1;
                     if(oldPosition.className.substring(5,10).localeCompare("black") == 0){
@@ -389,7 +398,7 @@ MSSV        : 18120645
                         {
                             
                             let newPosId = (parseInt((curPosition.rowStart)) - 1) * 8 + parseInt(curPosition.columnStart) - 1;
-                            let newPos = document.getElementById(newPosId);
+                            let newPos = $('#' + (newPosId));
 
                             let dx = curPosition.rowStart - oldPosition.rowStart;
                             let dy = curPosition.columnStart - oldPosition.columnStart;
@@ -401,11 +410,11 @@ MSSV        : 18120645
                             {
                                 
                                 if(dx != 0 || dy !=0){
-                                    let save = newPos.innerHTML;
+                                    let save = newPos.html();
                                     
-                                    oldPos.innerHTML = '';
+                                    oldPos.html('');
 
-                                    newPos.innerHTML = oldPosition.inHTML;    
+                                    newPos.html(oldPosition.inHTML);    
 
                                     countScore(save);
 
@@ -434,16 +443,10 @@ MSSV        : 18120645
                     
                 }
                 mouseisDown = false;
-            }
+            });
             
 
         }  
-
-
-        //RULE:
-       
-       
-
 
     //Moving rule
         function moveRule(oldCor,newCor)
@@ -493,16 +496,18 @@ MSSV        : 18120645
     //show movable position 
     function showMove(arr,type)
     {
-        let currCell = document.getElementById((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1);
-        if(currCell.innerHTML)
+        let currCell = $('#' + ((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1));
+        
+        if(currCell.html())
         {
+           
             if(turnBase == type)
             for(let i = 1; i < 65;i++)
             {
                 if(arr[i] == 1)
                 {
-                    currCell = document.getElementById(i);
-                    currCell.style.backgroundColor = "#8dd606";
+                    
+                    currCell = $('#' + i).css("background-color","#8dd606");
                 }
             }
         }
@@ -511,19 +516,19 @@ MSSV        : 18120645
     function hideMove(arr,type)
     {
         
-        let currCell = document.getElementById((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1);
-        if(currCell.innerHTML)
+        let currCell = $('#' + ((oldPosition.rowStart - 1) * 8 + parseInt(oldPosition.columnStart)-1));
+        if(currCell.html())
         if(turnBase == type)
         for(let i = 1; i < 65;i++)
         {
             if(arr[i] == 1)
             {
-                let currCell = document.getElementById(i);
-                if(currCell.className.substring(5).localeCompare("even") == 0)
-                currCell.style.backgroundColor = "#ccf0d8";
+                let currCell = $('#' + (i));
+                if(currCell.attr('class').substring(5).localeCompare("even") == 0)
+                currCell.css('background-color','#ccf0d8');
                 else
                 {
-                    currCell.style.backgroundColor = "#89f0dd";
+                    currCell.css('background-color','#89f0dd');
                 }
             }
         }
@@ -534,36 +539,36 @@ MSSV        : 18120645
     {
         if(turnBase == 1)
         {
-            document.getElementById("l7").style.background = "green";
-            document.getElementById("l7").style.color = "white";
-            document.getElementById("l7").innerHTML = "WHITE TURN";
-            document.getElementById("l7").style.fontSize = "150%";
-            document.getElementById("l7").style.textAlign = "center";
-            document.getElementById("l7").style.lineHeight = "100%";
+            $("#l7").css("background-color","green");
+            $("#l7").css("color","white");
+            $("#l7").html("WHITE TURN");
+            $("#l7").css("font-size","150%");
+            $("#l7").css("text-align","center");
+            $("#l7").css("line-heigh","100%");
             
-            document.getElementById("r0").style.background = "";
-            document.getElementById("r0").innerHTML = "";
+            $("#r0").css("background-color","");
+            $("#r0").html("");
         }
         if(turnBase == 2)
         {
-            document.getElementById("r0").style.background = "green";
-            document.getElementById("r0").style.color = "white";
-            document.getElementById("r0").innerHTML = "BLACK TURN";
-            document.getElementById("r0").style.fontSize = "150%";
-            document.getElementById("r0").style.textAlign = "center";
-            document.getElementById("r0").style.lineHeight = "100%";
-
-            document.getElementById("l7").style.background = "";
-            document.getElementById("l7").innerHTML = "";
+            $("#r0").css("background-color","green");
+            $("#r0").css("color","white");
+            $("#r0").html("WHITE TURN");
+            $("#r0").css("font-size","150%");
+            $("#r0").css("text-align","center");
+            $("#r0").css("line-heigh","100%");
+            
+            $("#l7").css("background-color","");
+            $("#l7").html("");
         }
     }
 
     //function to grant Pawn new role when reach the other end
     function bewtowPawn(obj)
         {
-            obj.onclick = function(e)
+            $(obj).click(function(e)
             {
-                if(this.innerHTML)
+                if($(obj).html())
                 {
                     let x = e.clientX;
                     let y = e.clientY;
@@ -577,7 +582,7 @@ MSSV        : 18120645
                     
                     showTurn();
                 }
-            }
+            });
             
         }
         //Count score and End game when king is eaten
@@ -634,13 +639,11 @@ MSSV        : 18120645
                 blackScore = blackScore + 9;
             }
 
-            document.getElementById("r5").innerHTML = blackScore;
-            document.getElementById("l6").innerHTML = whiteScore;
+            $("#r5").html(blackScore);
+            $("#l6").html(whiteScore);
             
         }
     </script>
 </body>
-
-</html>
 
 </html>

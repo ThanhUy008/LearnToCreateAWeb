@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Nothing
+        </title>
+        <style>
+            body{
+                height: 640px;
+                background: linear-gradient(to right,#fc9d03, #039dfc);
+            }
+            
+            
+            #grad p{
+                text-align: center;
+                font-size: 600%;
+                font-weight: lighter;
+                color: gray;
+                letter-spacing: 0.22em;
+                width: 100%;
+            }
+        .color{
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: 4fr 1fr 1fr 4fr;
+            justify-items: center;
+        }
+        #start{
+            grid-area: 1/2/2/3;
+        }
+        #end{
+            grid-area: 1/3/2/4;
+        }
+            
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+
+
+    <body>
+        <div id="grad">
+            <p>
+                B  A  C  K  G  R  O  U  N  D 
+            </p>
+            <p>
+                G  E  N  E  R  A  T  O  R
+            </p>
+        </div>
+        <div class="color">
+            <input type="color" id="start" value="#fc9d03">
+            <input type="color" id="end" value="#039dfc">
+        </div>
+        <script type="text/javascript">
+            $('#start').bind('input',function(){
+                
+                let c1 = $('#start').val();
+                let c2 = $('#end').val();
+              
+                $(document.body).css('background',`linear-gradient(to right, ${c1}, ${c2})`)
+            });
+
+            $('#end').bind('input',function(){
+                
+                let c1 = $('#start').val();
+                let c2 = $('#end').val();
+           
+                $(document.body).css('background',`linear-gradient(to right, ${c1}, ${c2})`)
+            });
+         </script>    
+    </body>
+    
+</html>
