@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+Ho va ten   : Bùi Thanh Uy
+MSSV        : 18120645
+-->
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>Simple Live Code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    <script src = "index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+
+<body>
+    
+<nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+          <h2>Simple Live Code</h2>
+      </div>
+      <div class="navbarbutton">
+        <button id = "myhtml" >HTML</button>
+        <button id = "mycss" >CSS</button>
+        <button id ="myjs" >JavaScript</button>
+        <button id ="myoutput" >Output</button>
+      </div>
+    </div>
+  </nav>
+    
+  <div class="container">
+      
+    <fieldset class="card" id = "field1">
+        <legend><h3>HTML</h3></legend>
+        <div id ="htmlinput" contenteditable="true"></div>
+    </fieldset>
+
+    <fieldset class="card" id = "field2">
+        <legend><h3>CSS</h3></legend>
+        <div id ="cssinput" contenteditable="true">
+            p {
+                color:violet;
+                font-weight: bold;
+                font-size: x-large;
+            };
+        </div>
+        
+    </fieldset>
+    <fieldset class="card" id = "field3">
+        <legend><h3>JavaScript</h3></legend>
+        <div id ="jsinput" contenteditable="true"><br></div>
+        
+    </fieldset>
+    <fieldset class="card" id = "field4">
+        <legend><h3>Output</h3></legend>
+        <div id ="outputinput" contenteditable="false"><br></div>
+        
+    </fieldset>
+    
+  </div>
+</body>
+
+</html>

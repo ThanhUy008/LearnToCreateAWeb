@@ -1,0 +1,26 @@
+.navbar{
+    background-color: gray;
+    
+}
+.container-fluid{
+    display: flex;
+    align-items: center;
+}
+.navbarbutton{
+    margin-left: 27%;
+}
+.container{
+    display: flex;
+}
+.card{
+    margin-top: 100px;
+    margin-left: 20px;
+    width: 23%;
+    min-height: 400px;
+    box-shadow: 1px 0px #888888;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-left:hidden;
+    border-bottom:hidden;
+    
+}
