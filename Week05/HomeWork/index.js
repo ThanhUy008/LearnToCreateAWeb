@@ -3,6 +3,7 @@ async function load(){
     const users = await resJSON.json();
     console.log(users)
     $('tbody').empty();
+    console.log(users.data.length);
     for(let user of users.data)
     {
         $('tbody').append(`<tr>
