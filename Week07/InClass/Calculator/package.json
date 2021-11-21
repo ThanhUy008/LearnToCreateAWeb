@@ -1,0 +1,19 @@
+{
+  "name": "week07",
+  "version": "1.0.0",
+  "main": "calculator-server.js",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Not implement\" && exit 1",
+    "start": "nodemon calculator-server.js"
+  },
+  "keywords": [],
+  "author": "Bui Thanh Uy",
+  "license": "ISC",
+  "description": ""
+}

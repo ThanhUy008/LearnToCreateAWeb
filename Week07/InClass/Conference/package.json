@@ -1,0 +1,19 @@
+{
+  "name": "conference",
+  "version": "1.0.0",
+  "main": "conference-server.js",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Not implement\" && exit 1",
+    "start": "nodemon conference-server.js"
+  },
+  "keywords": [],
+  "author": "Bui Thanh Uy",
+  "license": "ISC",
+  "description": ""
+}
