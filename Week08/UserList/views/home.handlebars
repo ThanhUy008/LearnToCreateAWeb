@@ -1,0 +1,78 @@
+<head>
+     <title>{{title}}</title>
+    {{#each script}}
+    <script src = "{{this}}"></script>
+    {{/each}}
+    <title>Home page</title>
+    {{#each css}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+</head>
+<body>
+      <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <nav class="navbar navbar-light bg-light">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">Slide title</div>
+                    <div class="card-body">
+                      <h5 class="card-title">Slide info</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">Main title</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First name</th>
+                                <th scope="col">Last name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Avatar</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each users}}
+                              <tr>
+                                <th scope="row">{{id}}</th>
+                                <td>{{first_name}}</td>
+                                <td>{{last_name}}</td>
+                                <td>{{email}}</td>
+                                <td><img src="{{avatar}}" alt=""></img></td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                        </table> 
+                    </div>
+                    <div class="pagination d-flex justify-content-center">
+                    <a class ="anchor" href="/next?page=1"> &laquo;</a>
+                    {{#each pages}}
+                    <a class ="anchor pagnationDetail {{state}}" href="/next?page={{pageNum}}"> {{pageNum}}</a>
+                    {{/each}}
+                    <a class ="anchor" href="/next?page={{lastpage}}"> &raquo;</a>
+                </div>
+                </div>
+                
+            </div>
+                
+        </div>
+      </div>
+       <script type="text/javascript">
+         
+          
+       </script>
+</body>
