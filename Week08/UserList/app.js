@@ -6,7 +6,7 @@ const hbs = exphbs.create({
 });
 
 const currentPagnation = require("./utils/getTotalPage");
-const loadNextList = require("./utils/loadUsers");
+const loadUsers = require("./utils/loadUsers");
 
 const port = 3000;
 const app = express();
@@ -17,38 +17,28 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+const routes = require('./routes/user');
 
-app.get('/',async (req, res) =>  {
-   var usersList = await loadNextList.nextList(3,1);
-  var anchoList = await currentPagnation.getCurrentPagnation(3,1);
-  console.log(usersList);
-  res.render('home',{
-    css:["home.css","pagnation.css"],
-    script:["home.js"],
-    users: usersList.data,
-    pages:anchoList,
-    lastpage:usersList.total_pages
-  })
-});
+app.use('/',routes);
+
 
 
 app.get('/next',async (req, res) =>  {
   var currenPageNum = req.query.page;
-  console.log(currenPageNum);
-  var usersList = await loadNextList.nextList(3,currenPageNum);
+  var usersList = await loadUsers.nextList(3,currenPageNum);
  var anchoList = await currentPagnation.getCurrentPagnation(3,currenPageNum);
  res.render('home',{
+  title: "Home",
    css:["home.css","pagnation.css"],
    script:["home.js"],
-   users: usersList.data,
+   users: usersList.data.data,
    pages:anchoList,
-   lastpage:usersList.total_pages
+   lastpage:usersList.data.total_pages
  })
+ 
 });
 
 
 
-
 app.use(express.static(__dirname+'/views'));
-console.log(__dirname + '/views');
 app.listen(port,()=> {console.log(`Listen at port ${port}`)});

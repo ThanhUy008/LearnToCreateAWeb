@@ -1,9 +1,10 @@
-const { response } = require('express');
-const fetch = require('node-fetch');
+
+const axios = require('axios').default;
 
 module.exports.getCurrentPagnation = async (numOfUsers,curPage) => {
     var anchoList;
-    await fetch(`https://reqres.in/api/users?per_page=${numOfUsers}`).then(response=>response.json()).then(users => {
+    await axios.get(`https://reqres.in/api/users?per_page=${numOfUsers}`).then(users=>{
+        users = users.data;
         if(curPage > 2 && curPage < users.total_pages - 2)
      anchoList = [
         {pageNum:curPage-1,state:""},{pageNum:curPage,state:"active"},{pageNum:curPage+1,state:""}

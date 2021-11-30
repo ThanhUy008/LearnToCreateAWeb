@@ -14,28 +14,23 @@
             <div class="col-md">
                 <nav class="navbar navbar-light bg-light">
                     <a class="navbar-brand">Navbar</a>
-                    <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline" method="POST" action="/finduser" validate>
+                    <input name = "id" class="form-control mr-sm-2" type="search" placeholder="Search by user id" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </nav>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-header bg-primary text-white">Slide title</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Slide info</h5>
-
-                    </div>
-                </div>
-            </div>
+           
             <div class="col-md">
                 <div class="card h-100">
                     <div class="card-header bg-primary text-white">Main title</div>
+                    <div class="col col-lg-2 align-self-end">
+                    <a href="/addnew" type="button" class="btn btn-primary">+ add new user</a>
+                    </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-bordered">
                             <thead class="thead-dark">
                               <tr>
                                 <th scope="col">#</th>
@@ -43,6 +38,7 @@
                                 <th scope="col">Last name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Avatar</th>
+                                <th scope="col" class ="text-center">Action</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -53,6 +49,11 @@
                                 <td>{{last_name}}</td>
                                 <td>{{email}}</td>
                                 <td><img src="{{avatar}}" alt=""></img></td>
+                                <td class="text-center">
+                                  <a href="/detail?id={{id}}" type = "button" class = "btn btn-light btn-small">Detail</a>
+                                  <a href="/update?id={{id}}" type = "button" class = "btn btn-light btn-small">Update</a>
+                                  <a href="/delete?id={{id}}" type = "button" class = "btn btn-light btn-small">Delete</a>
+                                </td>
                                 </tr>
                               {{/each}}
                             </tbody>
@@ -64,7 +65,8 @@
                     <a class ="anchor pagnationDetail {{state}}" href="/next?page={{pageNum}}"> {{pageNum}}</a>
                     {{/each}}
                     <a class ="anchor" href="/next?page={{lastpage}}"> &raquo;</a>
-                </div>
+                    </div>
+                    
                 </div>
                 
             </div>
@@ -72,7 +74,10 @@
         </div>
       </div>
        <script type="text/javascript">
-         
+                
+        $(window).on('load',(function() {
+          
+        }));
           
        </script>
 </body>

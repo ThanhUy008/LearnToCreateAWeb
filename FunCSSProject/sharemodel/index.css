@@ -1,0 +1,205 @@
+*{
+    margin: 0;
+    position: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background: #041090;
+}
+::selection{
+    color: #fff;
+    background: #041897;
+}
+
+.view-model, .pop-up{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.view-model{
+    padding: 10px 15px;
+    font-size: 110px;
+    color: #000a53;
+    transform: translate(-50%,-50%) scale(1.6);
+}
+
+.pop-up, .pop-up .show{
+    transition: top 0s 0.2s ease-in-out,
+    opacity 0.2s 0s ease-in-out,
+    transform 0.2 0s ease-in-out;
+}
+
+.pop-up{
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 380px;
+    width: 100%;
+    transform: translate(-50%,-50%) scale(1.6);
+    pointer-events: none;
+    background: #fff;
+    opacity: 0;
+    top:-150%
+}
+
+.pop-up .content{
+    margin: 20px 0;
+}
+
+.content p {
+    font-size: 16px;
+}
+
+.content .icons{
+    margin: 15px 0 20px 0;
+}
+
+.icons{
+    height: 50px;
+    border: 1px solid transparent;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3 ease-in-out;
+}
+
+.icons a {
+    text-decoration: none;
+    height: 50px;
+    width: 50px;
+    border: 1px solid red;
+}
+.icons a:nth-child(1){
+    color: #1877f2;
+    border-color: #b7d4fb;
+}
+.icons a:nth-child(1):hover{
+    background: #1877f2;
+
+}
+
+.icons a:nth-child(2){
+    color: #25D366;
+    border-color: #b6ef7c;
+}
+.icons a:nth-child(2):hover{
+    background: #25D366;
+
+}
+.icons a:nth-child(3){
+    color: 	#1DA1F2;
+    border-color: #b7d4fb;
+}
+.icons a:nth-child(3):hover{
+    background: 	#1DA1F2;
+
+}
+.icons a:nth-child(4){
+    color: #833AB4;
+    border-color: #f5bbcf;
+}
+.icons a:nth-child(4):hover{
+    background: #833AB4;
+
+}
+.icons a:nth-child(5){
+    color: #2867B2;
+    border-color: #b3e6ff;
+}
+.icons a:nth-child(5):hover{
+    background:#2867B2;
+
+}
+
+.icons a:hover{
+    color: #fff;
+    border-color: transparent;
+}
+
+.icons a i{
+    transition: transform 0.3s ease-in-out;
+}
+
+.icons a:hover i{
+    transform: scale(1.2);
+}
+
+.pop-up.show{
+    top:50%;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1.4);
+}
+
+button{
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 800;
+    border:2px solid transparent;
+}
+
+.pop-up :is(header,.icons,.field){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pop-up header{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d0c1d1;
+}
+
+header span{
+    font-size:21px;
+    font-weight: 600;
+}
+
+header .close,.icons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+header .close{
+    height: 33px;
+    width: 33px;
+    color: #878787;
+    background: #f2f3fb;
+    cursor: pointer;
+}
+
+.content .field{
+    margin: 12px 0 -5px 0;
+    height: 45px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 0 5px;
+}
+
+.field i{
+    width: 500px;
+    text-align: center;
+    font-size: 10px;
+}
+.field input{
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    font-size: 15px;
+}
+
+.field button{
+    padding: 5px 18px;
+    background: #041985;
+    color: #fff;
+}
+
+.pop-up, .content .field{
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.5);
+}
