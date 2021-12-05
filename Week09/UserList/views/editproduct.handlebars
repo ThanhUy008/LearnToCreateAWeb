@@ -1,0 +1,53 @@
+<head>
+<style>
+    body{
+        background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg');
+        background-size: 100%;
+    }
+    .card {
+        margin: 100px auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<title>Edit product</title>
+</head>
+<body>
+    <div class="card" style="width: 24rem;">
+        <form method="POST" action="/verified/editproduct" class="align-items-center" style="margin:20px">
+            <div class="form-row">
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="fname">Product ID</label>
+                    <input type="text" class="form-control" placeholder="Product ID" value ="{{id}}" readonly name="productid">
+                </div>
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="fname">Product Name</label>
+                    <input type="text" class="form-control" placeholder="Product Name"  name="product_name">
+                </div>
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="lname">Short Describe</label>
+                    <input type="text" class="form-control" placeholder="Short Describe" name="short_des">
+                </div>
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="lname">Full Describe</label>
+                    <input type="text" class="form-control" placeholder="Full Describe" name="full_des">
+                </div>
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="lname">Price</label>
+                    <input type="number" class="form-control" placeholder="Price" name="price">
+                </div>
+                 <div class="col-md-12 col-md-offset-10">
+                    <label for="lname">Category ID</label>
+                    <input type="number" class="form-control" placeholder="Category ID" name="category">
+                </div>
+                <div class="col-md-12 col-md-offset-10">
+                    <label for="lname">Quantity</label>
+                    <input type="text" class="form-control" placeholder="Quantity" name="quantity">
+                </div>
+               
+                
+            </div>
+            <input class="btn btn-primary " type="submit" value="Submit" style="margin-top:10px;margin-left:200px">
+        </form>
+    </div>
+</body>
