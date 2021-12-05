@@ -23,7 +23,7 @@ body{
     height: 80px;
     margin: 20px;
     border-radius: 50px;
-    transition: all 0.8s;
+    transition: all 0.7s;
 }
 
 .icon:hover{
@@ -44,12 +44,19 @@ body{
     box-shadow: 0 0 20px #1da1f2;
 }
 
+
+
 .icon i{
     color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    transition: all 0.7s ease-in-out;
+}
+
+.icon:hover i{
+    transform: translate(-50%,-50%) scale(1.4); 
 }
 
 svg circle{

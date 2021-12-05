@@ -1,0 +1,150 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+   
+    height: 100vh;
+    background-color: #f6f7fc;
+}
+.wrapper{
+    width: 40%;
+    min-width: 600px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left:50%;
+    top:50%;
+}
+
+.container{
+    width: 100%;
+    padding: 30px 30px 50px;
+    background: linear-gradient(45deg,#b74096,#da4772);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.container * {
+    font-family: sans-serif;
+    color: white;
+    font-weight: 500;
+}
+
+h2{
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 33px;
+    font-weight: bold;
+}
+
+.skills:not(:last-child)
+{
+    margin-bottom: 30px;
+}
+
+.details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.bar{
+    position: relative;
+    border: 2px solid #f6f7fc;
+    border-radius: 20px;
+}
+
+.bar div{
+    position: relative;
+    width: 0;
+    height: 9px;
+    border-radius: 10px;
+    background-color: #f6f7fc;
+
+}
+.mile-stone ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mile-stone ul li{
+    float: left;
+}
+
+.mile-stone ul li div{
+    display: block;
+    color: white;
+    text-align: center;
+    padding-right: 16px;
+    padding-left: 2px;
+    text-decoration: none;
+    margin-left: -10px;
+}
+
+
+.mile-stone ul li p
+{
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid white;
+}
+
+
+#html-bar{
+    animation: html-fill 2s forwards;
+}
+
+@keyframes html-fill {
+    100%{
+        width: 57%;
+    }
+    
+}
+
+
+#css-bar{
+    animation: css-fill 2s forwards;
+}
+
+@keyframes css-fill {
+    100%{
+        width: 50%;
+    }
+    
+}
+
+
+
+#js-bar{
+    animation: js-fill 2s forwards;
+}
+
+@keyframes js-fill {
+    100%{
+        width: 65%;
+    }
+    
+}
+
+
+#react-bar{
+    animation: react-fill 2s forwards;
+}
+
+@keyframes react-fill {
+    100%{
+        width: 00%;
+    }
+    
+}

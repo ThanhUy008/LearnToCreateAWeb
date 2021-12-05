@@ -25,16 +25,16 @@ body{
 
 .container img{
     z-index: 1;
-    width: 250px;
-    height: 300px;
+    width: 300px;
+    height: 440px;
 }
 .container::before{
     content:"";
     position: absolute;
-    top: -50px;
-    left: 50px;
-    width: 300px;
-    height: 300px;
+    top: 0px;
+    left: 0px;
+    width: 300px !important;
+    height: 440px;
     background: url('https://meta.vn/Data/image/2021/09/30/background-la-gi-anh-background-dep-9.png') center / cover;
     background-repeat: no-repeat; 
     opacity: 0.1;
@@ -44,7 +44,7 @@ body{
     z-index: 1;
     bottom:7px;
     width: 255px;
-    height: 260px;
+    height: 100px;
     color: #fff;
     padding: 0 7px;
     font-family: 'Poopins', sans-serif;
@@ -61,6 +61,17 @@ body{
 .content-box p{
     color:#1c151c;
     font-size: 14px;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+}
+.content-box:hover{
+    visibility: visible;
+    height: 280px;
+}
+.content-box:hover p{
+    visibility: visible;
+    position: relative;
 }
 
 .button{
