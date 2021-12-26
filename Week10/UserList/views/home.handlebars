@@ -1,0 +1,83 @@
+<head>
+     <title>{{title}}</title>
+    {{#each script}}
+    <script src = "{{this}}"></script>
+    {{/each}}
+    <title>Home page</title>
+    {{#each css}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+</head>
+<body>
+      <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <nav class="navbar navbar-light bg-light">
+                    <a href = "/verified" class="navbar-brand">Navbar</a>
+                    <a href="/logout" type="button" class="btn btn-primary">+ Log out</a>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+           
+            <div class="col-md">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">Main title</div>
+                    <div class="col col-lg-2 align-self-end">
+                    <a href="/verified/addnew" type="button" class="btn btn-primary">+ add new product</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Short Describe</th>
+                                <th scope="col">Full Describe</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Category ID</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col" class ="text-center">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each products}}
+                              <tr>
+                                <th scope="row">{{ProID}}</th>
+                                <td>{{ProName}}</td>
+                                <td>{{TinyDes}}</td>
+                                <td>{{{FullDes}}}</td>
+                                <td>{{Price}} VND</td>
+                                <td>{{CatID}}</td>
+                                <td>{{Quantity}}</td>
+                                <td class="text-center">
+                                  <a href="/verified/update?id={{ProID}}" type = "button" class = "btn btn-light btn-small">Update</a>
+                                  <a href="/verified/delete?id={{ProID}}" type = "button" class = "btn btn-light btn-small">Delete</a>
+                                </td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                        </table> 
+                    </div>
+                    <div class="pagination d-flex justify-content-center">
+                    <a class ="anchor" href="/verified/next?page=1"> &laquo;</a>
+                    {{#each pages}}
+                    <a class ="anchor pagnationDetail {{state}}" href="/verified/next?page={{pageNum}}"> {{pageNum}}</a>
+                    {{/each}}
+                    <a class ="anchor" href="/verified/next?page={{lastpage}}"> &raquo;</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+                
+        </div>
+      </div>
+       <script type="text/javascript">
+                
+        $(window).on('load',(function() {
+          
+        }));
+          
+       </script>
+</body>
